@@ -1,0 +1,24 @@
+#The major element in a sequence with the length of L is the element which appears in a sequence more than L/2 times. The challenge is to find that element in a sequence. 
+
+def max_count(data):
+	count = 1
+	element = data[0]
+	result = {}
+	for e in data:
+		if e not in result:
+			result[e] = 1
+		else:
+			result[e] = result[e] + 1
+	count = max(result, key=result.get)
+	if result[count] > len(data)/2:
+		return count
+	else:
+		return None
+
+import sys
+file = open('test.txt')
+for line in file:
+	data = line.replace("\n","").split(',')
+	print max_count(data)
+
+file.close()
